@@ -1,0 +1,16 @@
+"""Uncommitted settings like DB passwords and other machine-specifics
+
+You can override stock settings in this file, and git won't bother you about
+deltas you never intend to commit.
+
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',  # or 'postgresql'
+        'NAME': 'in_one_ear',
+        'USER': 'fred',
+        'PASSWORD': 'fredhasaprettynicepassphrase',
+        'HOST': '',                      # Leave as empty string for localhost.
+        'PORT': '',                      # Leave as empty string for default.
+    }
+}
