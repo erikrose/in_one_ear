@@ -2,11 +2,12 @@
 
 {% block title %}Articles{% endblock %}
 
+{% block header %}{% endblock %}
+
 {% block content %}
-  Howdy.
   <ul>
     {% for article in articles %}
-      <li>{{ article.title }}</li>
+      <li><a href="{% url blog.article article.slug %}">{{ article.title }}</a></li>
     {% endfor %}
   </ul>
 {% endblock %}

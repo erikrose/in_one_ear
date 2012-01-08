@@ -5,6 +5,15 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
-    {% block content %}{% endblock %}
+    {% block header %}
+      <div id="header">
+        <p>
+          <a href="{% url blog.article_list %}">Front Page</a>
+        </p>
+      </div>
+    {% endblock %}
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
   </body>
 </html>
