@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% load i18n %}
+
+{% block title %}
+  {% blocktrans with title=article.title %}Edit {{ title }}{% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+  <h1>{{ article.title }}</h1>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <table class="form">
+      {{ form }}
+    </table>
+    <input type="submit" value="Save" />
+  </form>
+{% endblock %}

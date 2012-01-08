@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,12 +9,13 @@
     {% block header %}
       <div id="header">
         <p>
-          <a href="{% url blog.article_list %}">Front Page</a>
+          <a href="{% url blog.article_list %}">{% trans "Front Page" %}</a>
         </p>
       </div>
     {% endblock %}
     <div id="content">
       {% block content %}{% endblock %}
     </div>
+    {% block menu %}{% endblock %}
   </body>
 </html>

@@ -2,7 +2,10 @@
 """Support machinery for blog-app tests"""
 from datetime import datetime
 from functools import wraps
+import random
+from string import letters
 
+from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
 from blog.models import Article
@@ -56,3 +59,20 @@ def article(**kwargs):
         options['slug'] = slugify(options['title'])
 
     return Article(**options)
+
+
+@with_save
+def user(**kwargs):
+    """Return a user with all necessary defaults filled in.
+
+    Default password is 'testpass' unless you say otherwise in a kwarg.
+
+    """
+    defaults = {}
+    if 'username' not in kwargs:
+        defaults['username'] = ''.join(random.choice(letters)
+                                       for x in xrange(15))
+    defaults.update(kwargs)
+    user = User(**defaults)
+    user.set_password(kwargs.get('password', 'testpass'))
+    return user

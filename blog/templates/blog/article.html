@@ -6,3 +6,9 @@
   <h1>{{ article.title }}</h1>
   {{ article.body_html|safe }}
 {% endblock %}
+
+{% block menu %}
+  <div id="menu">
+    <a href="{% url blog.edit_article article.slug %}">Edit</a>
+  </div>
+{% endblock %}
