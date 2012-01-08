@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title>Hi, world!</title>
+  </head>
+  <body>
+    Howdy.
+    <ul>
+      {% for article in articles %}
+        <li>{{ article.title }}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
