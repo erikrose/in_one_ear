@@ -13,3 +13,8 @@ class ArticleTests(TestCase):
         result = unicode(article(title='Hi There'))
         eq_(type(result), type(u''))
         eq_(result, u'Hi There')
+
+    def test_body_html(self):
+        """Make sure the body renders its restructured text."""
+        a = article(body='*improbable*')
+        assert '<em>improbable</em>' in a.body_html

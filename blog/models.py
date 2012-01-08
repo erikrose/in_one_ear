@@ -1,4 +1,6 @@
 from datetime import datetime
+from docutils.core import publish_parts
+from docutils.writers import html4css1
 
 from django.db.models import Model, DateTimeField, TextField, DateField
 
@@ -11,7 +13,24 @@ class Article(Model):
     title = TextField(db_index=True, unique=True)  # Index for admin search.
     slug = TextField(db_index=True, unique=True)
     created = DateTimeField(auto_now_add=True, db_index=True)  # Index for sort
-    body = TextField(blank=True)  # Can be blank. Why be obnoxious?
+    body = TextField(blank=True)  # ReST. Can be blank. Why be obnoxious?
 
     def __unicode__(self):
         return unicode(self.title)
+
+    @property
+    def body_html(self):
+        """Return the HTML-rendered body.
+
+        In a real system, we'd probably cache the rendered HTML.
+
+        """
+        # Keep authors from spilling the contents of local files into the post
+        # or abusing raw HTML:
+        secure_settings = {'file_insertion_enabled': 0,
+                           'raw_enabled': 0,
+                           'initial_header_level': 2,  # TODO: Doesn't work
+                           '_disable_config': 1}
+        return publish_parts(self.body,
+                             writer=html4css1.Writer(),
+                             settings_overrides=secure_settings)['html_body']
