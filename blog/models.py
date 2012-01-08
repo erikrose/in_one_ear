@@ -11,7 +11,7 @@ class Article(Model):
     title = TextField(db_index=True, unique=True)  # Index for admin search.
     slug = TextField(db_index=True, unique=True)
     created = DateTimeField(auto_now_add=True, db_index=True)  # Index for sort
-    body = TextField()
+    body = TextField(blank=True)  # Can be blank. Why be obnoxious?
 
     def __unicode__(self):
         return unicode(self.title)
