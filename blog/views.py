@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 
 
 from blog.models import Article
@@ -14,4 +14,8 @@ def article_list(request):
 
 
 def article(request, slug):
-    return HttpResponse()
+    """Show a particular article."""
+    article = get_object_or_404(Article, slug=slug)
+    return render_to_response(
+        'blog/article.html',
+        {'article': article})

@@ -17,3 +17,13 @@ class ArticlesTests(TestCase):
         response = self.client.get(reverse('blog.article_list'))
         self.assertContains(response, 'Improbable')
         self.assertContains(response, 'Dwarves')
+
+    def test_article(self):
+        """Assert the article page actually shows the article."""
+        a = article(title='Improbable Dwarves',
+                    body='These dwarves are highly improbable!',
+                    save=True)
+        response = self.client.get(reverse('blog.article',
+                                           kwargs={'slug': a.slug}))
+        self.assertContains(response, 'Improbable Dwarves')
+        self.assertContains(response, 'These dwarves are highly improbable!')
