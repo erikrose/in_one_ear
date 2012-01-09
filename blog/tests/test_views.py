@@ -29,13 +29,13 @@ class EditArticleTests(ViewTestCase):
         a = article(save=True)
         edit_view = self._edit_view(a.slug)
 
-        # Can't see the edit screen:
+        # Can't see the edit screen; redirects to login:
         response = self.client.get(edit_view)
-        eq_(response.status_code, 403)
+        eq_(response.status_code, 302)
 
         # And can't actually save:
         response = self.client.post(edit_view)
-        eq_(response.status_code, 403)
+        eq_(response.status_code, 302)
 
     def test_edit(self):
         """Make sure staff can edit articles."""

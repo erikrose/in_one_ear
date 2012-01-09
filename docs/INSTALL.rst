@@ -1,3 +1,9 @@
+Python Versions
+===============
+
+I've been using 2.7, but 2.6 should work as well, and 2.5 might.
+
+
 Install PostgreSQL
 ==================
 
@@ -15,3 +21,18 @@ Set Settings
 
 In the ``settings`` folder, copy ``local.py-dist`` to ``local.py``, and edit
 the latter with your DB credentials.
+
+The FS division between local and stock settings is something we use at Mozilla
+to avoid accidentally committing machine-specific things. It works pretty well.
+
+
+Install Dependencies
+====================
+
+Use pip to install the dependencies listed in ``requirements.txt``.
+
+
+Run The Tests
+=============
+
+To be sure everything's copasetic, run ``manage.py test``.

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
@@ -29,6 +30,7 @@ def article(request, slug):
                                  'comment_form': CommentForm()})
 
 
+@login_required
 @require_http_methods(['GET', 'POST'])  # Don't want to think about TRACE, etc.
 def new_article(request):
     """Show the new-article form or actually create a new article."""
@@ -51,6 +53,7 @@ def new_article(request):
                                 {'form': form})
 
 
+@login_required
 @require_http_methods(['GET', 'POST'])
 def edit_article(request, slug):
     """Edit an existing article.

@@ -140,3 +140,6 @@ LOGGING = {
 }
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# On login without a "next" destination, go home:
+LOGIN_REDIRECT_URL = '/'
