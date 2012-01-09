@@ -58,6 +58,36 @@ def edit_article(request, slug):
             raise NotImplementedError
 
 
+@require_http_methods(['GET', 'POST'])
+def edit_article(request, slug):
+    """Edit an existing article.
+
+    Only staff can edit, but they can edit anything: theirs or not. We're all
+    adults here.
+
+    """
+    if not request.user.is_staff:
+        return HttpResponseForbidden()
+
+    article = get_object_or_404(Article, slug=slug)
+
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            # TODO: Handle uniqueness violations gracefully.
+            return HttpResponseRedirect(reverse('blog.article',
+                                        args=[article.slug]))
+    else:  # GET
+        form = ArticleForm(instance=article)
+
+    # Form is invalid, or it's a GET.
+    return render_to_response('blog/edit_article.html',
+                              {'form': form,
+                               'article': article},
+                              context_instance=RequestContext(request))
+
+
 @require_POST
 def delete_article(request, slug):
     """Delete an existing article."""

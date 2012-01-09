@@ -9,16 +9,20 @@ from blog.models import Article
 from blog.tests import article, user
 
 
-class EditArticleTests(TestCase):
+class ViewTestCase(TestCase):
+    """Test case base class with some handy convenience methods"""
+
+    def _log_in_as_staff(self):
+        u = user(is_staff=True, save=True)
+        self.client.login(username=u.username, password='testpass')
+
+
+class EditArticleTests(ViewTestCase):
     """Tests for the edit_article view"""
 
     @staticmethod
     def _edit_view(slug):
         return reverse('blog.edit_article', kwargs={'slug': slug})
-
-    def _log_in_as_staff(self):
-        u = user(is_staff=True, save=True)
-        self.client.login(username=u.username, password='testpass')
 
     def test_staff_required(self):
         """Make sure non-staff users can't edit articles."""
@@ -46,6 +50,20 @@ class EditArticleTests(TestCase):
         changed_article = Article.objects.get(pk=a.pk)
         eq_(changed_article.title, 'new title')
         eq_(changed_article.body, 'new body')
+
+    def test_blank_title(self):
+        """Assert posting a blank title shows an error."""
+        a = article(save=True)
+        edit_view = self._edit_view(a.slug)
+
+        self._log_in_as_staff()
+        response = self.client.post(edit_view, {'title': '',
+                                                'body': 'new body'})
+        self.assertContains(response, 'This field is required.')
+
+
+class DeleteArticleTests(ViewTestCase):
+    """Tests for the delete_article view"""
 
     def test_delete(self):
         """Make sure staff can delete articles."""
