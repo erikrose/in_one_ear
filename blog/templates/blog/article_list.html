@@ -12,3 +12,13 @@
     {% endfor %}
   </ul>
 {% endblock %}
+
+{% block menu %}
+  {% if user.is_staff %}
+    <div id="menu">
+      <menu type="toolbar">
+        <li><a href="{% url blog.new_article %}">New</a></li>
+      </menu>
+    </div>
+  {% endif %}
+{% endblock %}

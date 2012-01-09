@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+{% load i18n %}
+
+{% block title %}
+  {% trans "New Article" %}
+{% endblock %}
+
+{% block content %}
+  <h1>{% trans "New Article" %}</h1>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <table class="form">
+      {{ form }}
+    </table>
+    <input type="submit" value="Save" />
+    <a href="{% url blog.article_list %}">Cancel</a>
+  </form>
+{% endblock %}

@@ -3,6 +3,7 @@ from docutils.core import publish_parts
 from docutils.writers import html4css1
 
 from django.db.models import Model, DateTimeField, TextField, DateField
+from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _lazy
 
 
@@ -37,3 +38,9 @@ class Article(Model):
         return publish_parts(self.body,
                              writer=html4css1.Writer(),
                              settings_overrides=secure_settings)['html_body']
+
+    def save(self, *args, **kwargs):
+        """If a slug wasn't provided, make one up based on the title."""
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super(Article, self).save(*args, **kwargs)

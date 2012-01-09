@@ -76,3 +76,17 @@ class DeleteArticleTests(ViewTestCase):
                                     follow=True)
         eq_(response.status_code, 200)
         assert not Article.objects.all().exists()
+
+
+class NewArticleTests(ViewTestCase):
+    """Tests for making new articles"""
+
+    def test_happy_path(self):
+        """Assert new articles get made if everybody does everything right."""
+        self._log_in_as_staff()
+        response = self.client.post(reverse('blog.new_article'),
+                                    {'title': 'improbable', 'body': 'dwarf'},
+                                    follow=True)
+        assert Article.objects.filter(title='improbable',
+                                      body='dwarf').exists()
+        self.assertContains(response, 'improbable')

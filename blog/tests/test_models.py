@@ -2,6 +2,7 @@ from django.test import TestCase
 
 from nose.tools import eq_
 
+from blog.models import Article
 from blog.tests import article
 
 
@@ -18,3 +19,11 @@ class ArticleTests(TestCase):
         """Make sure the body renders its restructured text."""
         a = article(body='*improbable*')
         assert '<em>improbable</em>' in a.body_html
+
+    def test_slug_making(self):
+        """Make sure the model makes up a good slug when one isn't provided."""
+        a = Article(title='Hello Dolly')
+        a.save()
+
+        a_saved = Article.objects.get(title='Hello Dolly')
+        eq_(a_saved.slug, 'hello-dolly')
