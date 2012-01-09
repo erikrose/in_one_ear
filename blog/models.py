@@ -1,10 +1,13 @@
 from datetime import datetime
-from docutils.core import publish_parts
-from docutils.writers import html4css1
 
-from django.db.models import Model, DateTimeField, TextField, DateField
+from django.contrib.auth.models import User
+from django.db.models import (Model, DateTimeField, TextField, DateField,
+                              ForeignKey)
 from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _lazy
+
+
+REST_INSTRUCTIONS = _lazy(u'Use reStructuredText.')
 
 
 class Article(Model):
@@ -17,30 +20,26 @@ class Article(Model):
     slug = TextField(db_index=True, unique=True)
     created = DateTimeField(auto_now_add=True, db_index=True)  # Index for sort
     body = TextField(blank=True,  # Can be blank. Why be obnoxious?
-                     help_text=_lazy(u'Use reStructuredText.'))
+                     help_text=REST_INSTRUCTIONS)
 
     def __unicode__(self):
         return unicode(self.title)
-
-    @property
-    def body_html(self):
-        """Return the HTML-rendered body.
-
-        In a real system, we'd probably cache the rendered HTML.
-
-        """
-        # Keep authors from spilling the contents of local files into the post
-        # or abusing raw HTML:
-        secure_settings = {'file_insertion_enabled': 0,
-                           'raw_enabled': 0,
-                           'initial_header_level': 2,  # TODO: Doesn't work
-                           '_disable_config': 1}
-        return publish_parts(self.body,
-                             writer=html4css1.Writer(),
-                             settings_overrides=secure_settings)['html_body']
 
     def save(self, *args, **kwargs):
         """If a slug wasn't provided, make one up based on the title."""
         if not self.slug:
             self.slug = slugify(self.title)
         return super(Article, self).save(*args, **kwargs)
+
+
+class Comment(Model):
+    """A comment attached to a blog article"""
+    creator = ForeignKey(User, null=True)
+    article = ForeignKey(Article, related_name='comments')
+    body = TextField(help_text=REST_INSTRUCTIONS)
+
+    class Meta(object):
+        ordering = ['id']
+
+    def __unicode__(self):
+        return unicode(self.body)

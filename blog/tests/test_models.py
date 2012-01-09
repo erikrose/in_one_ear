@@ -15,11 +15,6 @@ class ArticleTests(TestCase):
         eq_(type(result), type(u''))
         eq_(result, u'Hi There')
 
-    def test_body_html(self):
-        """Make sure the body renders its restructured text."""
-        a = article(body='*improbable*')
-        assert '<em>improbable</em>' in a.body_html
-
     def test_slug_making(self):
         """Make sure the model makes up a good slug when one isn't provided."""
         a = Article(title='Hello Dolly')

@@ -1,11 +1,32 @@
 {% extends "blog/base.html" %}
-{% load i18n %}
+{% load i18n rst2html %}
 
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block content %}
   <h1>{{ article.title }}</h1>
-  {{ article.body_html|safe }}
+  {{ article.body|rst2html }}
+
+  {% for comment in article.comments.all %}
+    <div class="comment">
+      <div class="byline">
+        {% if comment.creator %}
+          {{ comment.creator.username }}
+        {% else %}
+          {% trans "Anonymous" %}
+        {% endif %}
+      </div>
+      <div class="body">
+        {{ comment.body|rst2html }}
+      </div>
+    </div>
+  {% endfor %}
+
+  <form action="{% url blog.new_comment article.slug %}" method="POST">
+    {% csrf_token %}
+    {{ comment_form.body }}
+    <input type="submit" value="{% trans "Comment" %}" />
+  </form>
 {% endblock %}
 
 {% block menu %}

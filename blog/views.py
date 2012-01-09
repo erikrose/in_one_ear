@@ -5,7 +5,7 @@ from django.template import RequestContext
 from django.views.decorators.http import (require_GET, require_POST,
                                           require_http_methods)
 
-from blog.forms import ArticleForm
+from blog.forms import ArticleForm, CommentForm
 from blog.models import Article
 
 
@@ -25,10 +25,11 @@ def article(request, slug):
     article = get_object_or_404(Article, slug=slug)
     return _render_contextually(request,
                                 'blog/article.html',
-                                {'article': article})
+                                {'article': article,
+                                 'comment_form': CommentForm()})
 
 
-@require_http_methods(['GET', 'POST'])
+@require_http_methods(['GET', 'POST'])  # Don't want to think about TRACE, etc.
 def new_article(request):
     """Show the new-article form or actually create a new article."""
     if not request.user.is_staff:
@@ -88,6 +89,24 @@ def delete_article(request, slug):
     Article.objects.get(slug=slug).delete()
     # If it wasn't there, no big deal. The end state is the same.
     return HttpResponseRedirect(reverse('blog.article_list'))
+
+
+@require_POST
+def new_comment(request, slug):
+    """Attach a new comment to the given article."""
+    article = get_object_or_404(Article, slug=slug)
+    # TODO: Quit fetching anything but ID from the article.
+    form = CommentForm(request.POST)
+
+    # Comment form is always valid.
+    comment = form.save(commit=False)
+    if not request.user.is_anonymous():
+        comment.creator = request.user
+    comment.article = article
+    comment.save()
+    #form.save_m2m()  # Does nothing, of course
+    return HttpResponseRedirect(reverse('blog.article',
+                                args=[slug]))  # TODO: add anchor
 
 
 def _render_contextually(request, *args, **kwargs):

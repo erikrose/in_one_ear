@@ -90,3 +90,6 @@ class NewArticleTests(ViewTestCase):
         assert Article.objects.filter(title='improbable',
                                       body='dwarf').exists()
         self.assertContains(response, 'improbable')
+
+
+# TODO: Write tests for commenting.
