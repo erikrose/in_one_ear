@@ -8,7 +8,17 @@
 {% endblock %}
 
 {% block menu %}
-  <div id="menu">
-    <a href="{% url blog.edit_article article.slug %}">Edit</a>
-  </div>
+  {% if user.is_staff %}
+    <div id="menu">
+      <menu type="toolbar">
+        <li><a href="{% url blog.edit_article article.slug %}">Edit</a></li>
+        <li>
+          <form action="{% url blog.delete_article article.slug %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Delete" />
+          </form>
+        </li>
+      </menu>
+    </div>
+  {% endif %}
 {% endblock %}

@@ -13,5 +13,6 @@
       {{ form }}
     </table>
     <input type="submit" value="Save" />
+    <a href="{% url blog.article article.slug %}">Cancel</a>
   </form>
 {% endblock %}

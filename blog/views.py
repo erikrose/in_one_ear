@@ -22,7 +22,9 @@ def article_list(request):
 def article(request, slug):
     """Show a particular article."""
     article = get_object_or_404(Article, slug=slug)
-    return render_to_response('blog/article.html', {'article': article})
+    return render_to_response('blog/article.html',
+                              {'article': article},
+                              context_instance=RequestContext(request))
 
 
 @require_http_methods(['GET', 'POST'])
@@ -49,7 +51,19 @@ def edit_article(request, slug):
         if form.is_valid():
             form.save()
             # TODO: Handle uniqueness violations gracefully.
-            return HttpResponseRedirect(reverse('blog.article', args=[article.slug]))
+            return HttpResponseRedirect(reverse('blog.article',
+                                        args=[article.slug]))
         else:
             # At the moment, there is no invalidity possible.
             raise NotImplementedError
+
+
+@require_POST
+def delete_article(request, slug):
+    """Delete an existing article."""
+    if not request.user.is_staff:
+        return HttpResponseForbidden()
+
+    Article.objects.get(slug=slug).delete()
+    # If it wasn't there, no big deal. The end state is the same.
+    return HttpResponseRedirect(reverse('blog.article_list'))
