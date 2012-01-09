@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% load i18n %}
 
 {% block title %}{{ article.title }}{% endblock %}
 
@@ -11,11 +12,11 @@
   {% if user.is_staff %}
     <div id="menu">
       <menu type="toolbar">
-        <li><a href="{% url blog.edit_article article.slug %}">Edit</a></li>
+        <li><a href="{% url blog.edit_article article.slug %}">{% trans "Edit" %}</a></li>
         <li>
           <form action="{% url blog.delete_article article.slug %}" method="POST">
             {% csrf_token %}
-            <input type="submit" value="Delete" />
+            <input type="submit" value="{% trans "Delete" %}" />
           </form>
         </li>
       </menu>

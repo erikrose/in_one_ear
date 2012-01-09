@@ -17,7 +17,7 @@
   {% if user.is_staff %}
     <div id="menu">
       <menu type="toolbar">
-        <li><a href="{% url blog.new_article %}">New</a></li>
+        <li><a href="{% url blog.new_article %}">{% trans "New" %}</a></li>
       </menu>
     </div>
   {% endif %}

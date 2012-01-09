@@ -13,6 +13,6 @@
       {{ form }}
     </table>
     <input type="submit" value="Save" />
-    <a href="{% url blog.article article.slug %}">Cancel</a>
+    <a href="{% url blog.article article.slug %}">{% trans "Cancel" %}</a>
   </form>
 {% endblock %}
