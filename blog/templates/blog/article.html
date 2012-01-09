@@ -5,6 +5,9 @@
 
 {% block content %}
   <h1>{{ article.title }}</h1>
+  <div id="publication-date">
+    {{ article.created }}
+  </div>
   {{ article.body|rst2html }}
 
   {% for comment in article.comments.all %}
