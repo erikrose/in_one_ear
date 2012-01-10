@@ -1,7 +1,9 @@
 {% extends "blog/base.html" %}
-{% load i18n %}
+{% load i18n rst2html %}
 
 {% block title %}{% trans "Articles" %}{% endblock %}
+
+{% block body_classes %}article-list{% endblock %}
 
 {% block content %}
   {% if user.is_staff %}
@@ -10,11 +12,13 @@
     </menu>
   {% endif %}
 
-  <h1>Articles</h1>
-
-  <ul>
-    {% for article in articles %}
-      <li><a href="{% url blog.article article.slug %}">{{ article.title }}</a></li>
-    {% endfor %}
-  </ul>
+  {% for article in articles %}
+    <article>
+      <h1><a href="{% url blog.article article.slug %}">{{ article.title }}</a></h1>
+      <time pubdate="pubdate" class="publication-date" datetime="{{ article.created|date:"Y-m-d" }}">
+        {{ article.created|date }}
+      </time>
+      {{ article.body|rst2html|truncatewords_html:100 }}
+    </article>
+  {% endfor %}
 {% endblock %}

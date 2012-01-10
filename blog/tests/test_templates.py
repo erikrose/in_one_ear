@@ -25,3 +25,6 @@ class ArticlesTests(TestCase):
                                            kwargs={'slug': a.slug}))
         self.assertContains(response, 'Improbable Dwarves')
         self.assertContains(response, 'These dwarves are highly improbable!')
+
+
+# TODO: Tests for tricky front-page excerpting

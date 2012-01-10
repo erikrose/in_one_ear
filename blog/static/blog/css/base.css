@@ -142,6 +142,13 @@ body.new-article textarea {
 }
 
 
+/* Front page */
+
+body.article-list article {
+	margin-bottom: 3em;
+}
+
+
 /* Generic form styling */
 
 table.form {
