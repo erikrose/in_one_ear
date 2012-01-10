@@ -1,7 +1,7 @@
 Python Versions
 ===============
 
-I've been using 2.7, but 2.6 should work as well, and 2.5 might.
+2.7 and 2.6 work. 2.5 might as well.
 
 
 Install PostgreSQL
