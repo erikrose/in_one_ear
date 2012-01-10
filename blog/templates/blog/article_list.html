@@ -4,19 +4,17 @@
 {% block title %}{% trans "Articles" %}{% endblock %}
 
 {% block content %}
+  {% if user.is_staff %}
+    <menu type="toolbar">
+      <li><a href="{% url blog.new_article %}">{% trans "New" %}</a></li>
+    </menu>
+  {% endif %}
+
+  <h1>Articles</h1>
+
   <ul>
     {% for article in articles %}
       <li><a href="{% url blog.article article.slug %}">{{ article.title }}</a></li>
     {% endfor %}
   </ul>
-{% endblock %}
-
-{% block menu %}
-  {% if user.is_staff %}
-    <div id="menu">
-      <menu type="toolbar">
-        <li><a href="{% url blog.new_article %}">{% trans "New" %}</a></li>
-      </menu>
-    </div>
-  {% endif %}
 {% endblock %}

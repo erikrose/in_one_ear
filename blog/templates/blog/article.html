@@ -3,47 +3,53 @@
 
 {% block title %}{{ article.title }}{% endblock %}
 
+{% block body_classes %}article{% endblock %}
+
 {% block content %}
-  <h1>{{ article.title }}</h1>
-  <div id="publication-date">
-    {{ article.created }}
-  </div>
-  {{ article.body|rst2html }}
-
-  {% for comment in article.comments.all %}
-    <div class="comment">
-      <div class="byline">
-        {% if comment.creator %}
-          {{ comment.creator.username }}
-        {% else %}
-          {% trans "Anonymous" %}
-        {% endif %}
-      </div>
-      <div class="body">
-        {{ comment.body|rst2html }}
-      </div>
+  <article class="main">
+    <header>
+      {% if user.is_staff %}
+        <menu type="toolbar">
+          <li><a href="{% url blog.edit_article article.slug %}">{% trans "Edit" %}</a></li>
+          <li class="delete">
+            <form action="{% url blog.delete_article article.slug %}" method="POST">
+              {% csrf_token %}
+              <input type="submit" value="{% trans "Delete" %}" />
+            </form>
+          </li>
+        </menu>
+      {% endif %}
+      <h1>{{ article.title }}</h1>
+      <time pubdate="pubdate" class="publication-date" datetime="{{ article.created|date:"Y-m-d" }}">
+        {{ article.created|date }}
+      </time>
+    </header>
+  
+    <div class="article-body">
+      {{ article.body|rst2html }}
     </div>
-  {% endfor %}
+  
+    <div class="comments">
+      {% for comment in article.comments.all %}
+        <article class="comment">
+          <div class="byline">
+            {% if comment.creator %}
+              {{ comment.creator.username }}
+            {% else %}
+              {% trans "Anonymous" %}
+            {% endif %}
+          </div>
+          <div class="body">
+            {{ comment.body|rst2html }}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </article>
 
-  <form action="{% url blog.new_comment article.slug %}" method="POST">
+  <form class="comment" action="{% url blog.new_comment article.slug %}" method="POST">
     {% csrf_token %}
     {{ comment_form.body }}
     <input type="submit" value="{% trans "Comment" %}" />
   </form>
-{% endblock %}
-
-{% block menu %}
-  {% if user.is_staff %}
-    <div id="menu">
-      <menu type="toolbar">
-        <li><a href="{% url blog.edit_article article.slug %}">{% trans "Edit" %}</a></li>
-        <li>
-          <form action="{% url blog.delete_article article.slug %}" method="POST">
-            {% csrf_token %}
-            <input type="submit" value="{% trans "Delete" %}" />
-          </form>
-        </li>
-      </menu>
-    </div>
-  {% endif %}
 {% endblock %}

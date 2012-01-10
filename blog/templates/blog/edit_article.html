@@ -5,14 +5,23 @@
   {% blocktrans with title=article.title %}Edit {{ title }}{% endblocktrans %}
 {% endblock %}
 
+{% block body_classes %}edit-article{% endblock %}
+
 {% block content %}
   <h1>{{ article.title }}</h1>
   <form action="" method="POST">
     {% csrf_token %}
     <table class="form">
       {{ form }}
+      <tr>
+        <th></th>
+        <td>
+          <div>
+            <input type="submit" value="Save" />
+            <a class="destructive" href="{% url blog.article article.slug %}">{% trans "Cancel" %}</a>
+          </div>
+        </td>
+      </tr>
     </table>
-    <input type="submit" value="Save" />
-    <a href="{% url blog.article article.slug %}">{% trans "Cancel" %}</a>
   </form>
 {% endblock %}

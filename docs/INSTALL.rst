@@ -4,18 +4,6 @@ Python Versions
 2.7 and 2.6 work. 2.5 might as well.
 
 
-Install PostgreSQL
-==================
-
-After installing Postgres, initialize a database cluster, if it wasn't done
-automatically. Here how to do it on a Mac if you used the MacPorts package::
-
-    mkdir -p /opt/local/var/db/postgresql84/defaultdb
-    chown postgres:postgres /opt/local/var/db/postgresql84/defaultdb
-    su postgres -c '/opt/local/lib/postgresql84/bin/initdb -D /opt/local/var/db/postgresql84/defaultdb'
-    su postgres -c '/opt/local/lib/postgresql84/bin/postgres -D /opt/local/var/db/postgresql84/defaultdb'
-
-
 Set Settings
 ============
 

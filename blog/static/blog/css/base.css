@@ -1,0 +1,174 @@
+/* General */
+
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+
+h2, h3, h4, h5, h6 {
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+h1 {
+	font-size: 280%;
+	margin: 0;
+}
+
+h2 {
+	font-size: 230%;
+}
+
+h3 {
+	color: #333;
+	font-size: 150%;
+}
+
+/* TODO: More headers */
+
+
+/* Global header */
+
+#header {
+	background-color: #eee;
+	font-size: 75%;
+	margin-bottom: 2em;
+	padding: 0.6em;
+}
+
+#header .home-link {
+	float: left;
+}
+
+#header .auth-info {
+	float: right;
+}
+
+/* Some space between the username and the logout link */
+#header .auth-info a {
+	margin-left: 1em;
+}
+
+/* TODO: There's got to be a better way to keep the header div from totally collapsing. */
+.clearer {
+	clear: both;
+}
+
+
+/* Entity menu */
+
+menu {
+	background-color: #eee;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;	   display: block;
+	float: right;
+	padding: 1em;
+}
+
+menu li {
+	display: inline-block;
+	margin: 0 2.5em;
+}
+
+menu li:first-child {
+	margin-left: 0;
+}
+
+menu li:last-child {
+	margin-right: 0;
+}
+
+
+/* Article page */
+
+#content {
+	margin: 0 2.5em
+}
+
+time.publication-date {
+	color: #aaa;
+	font-size: 90%;
+	font-weight: bold;
+}
+
+article.main header {
+	margin-bottom: 2em;
+}
+
+.article-body {
+	line-height: 140%;
+	margin-bottom: 4em;
+}
+
+.comments {
+	margin-bottom: 1em;
+}
+
+.comments article {
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	color: #333;
+	line-height: 120%;
+	padding: 1em 1.5em;
+}
+
+.comments article .byline {
+	color: #aaa;
+	font-size: 90%;
+	font-weight: bold;
+}
+
+.comments article:nth-child(odd) {
+	background-color: #f4f4f4;
+}
+
+form.comment textarea {
+	height: 20ex;
+	width: 100%;
+}
+
+
+/* Article editing */
+
+body.edit-article textarea,
+body.new-article textarea {
+	height: 100ex;
+}
+
+
+/* Generic form styling */
+
+table.form {
+	width: 100%;
+}
+
+table.form a.destructive {
+	float: right;
+}
+
+table.form th {
+	vertical-align: top;
+}
+
+table.form input[type=text],
+table.form textarea {
+	width: 100%;
+}
+
+.helptext {
+	color: #666;
+	font-size: 80%;
+}
+
+form ul.errorlist {
+	color: #a00;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}

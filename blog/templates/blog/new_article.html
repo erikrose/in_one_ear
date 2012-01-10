@@ -5,14 +5,23 @@
   {% trans "New Article" %}
 {% endblock %}
 
+{% block body_classes %}new-article{% endblock %}
+
 {% block content %}
   <h1>{% trans "New Article" %}</h1>
   <form action="" method="POST">
     {% csrf_token %}
     <table class="form">
       {{ form }}
+      <tr>
+        <th></th>
+        <td>
+          <div>
+            <input type="submit" value="Save" />
+            <a class="destructive" href="{% url blog.article_list %}">{% trans "Cancel" %}</a>
+          </div>
+        </td>
+      </tr>
     </table>
-    <input type="submit" value="Save" />
-    <a href="{% url blog.article_list %}">{% trans "Cancel" %}</a>
   </form>
 {% endblock %}

@@ -21,7 +21,7 @@ def rst2html(rst):
     # or abusing raw HTML:
     secure_settings = {'file_insertion_enabled': 0,
                        'raw_enabled': 0,
-                       'initial_header_level': 2,  # TODO: Doesn't work
+                       'initial_header_level': 2,
                        '_disable_config': 1}
     return mark_safe(publish_parts(
             rst,

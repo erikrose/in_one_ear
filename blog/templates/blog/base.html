@@ -1,25 +1,25 @@
-{% load i18n %}
-<!DOCTYPE html>
+{% load i18n %}<!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}blog/css/base.css" />
   </head>
-  <body>
-    {% block header %}
-      <div id="header">
-        <a href="{% url blog.article_list %}">{% trans "Front Page" %}</a>
+  <body class="{% block body_classes %}{% endblock %}">
+    <nav id="header">
+      <a class="home-link" href="{% url blog.article_list %}">{% trans "Front Page" %}</a>
+      <span class="auth-info">
         {% if user.is_authenticated %}
           {{ user.username }}
           <a href="{% url in_one_ear.logout %}">{% trans "Log Out" %}</a>
         {% else %}
           <a href="{% url in_one_ear.login %}">{% trans "Log In" %}</a>
         {% endif %}
-      </div>
-    {% endblock %}
+      </span>
+      <div class="clearer"></div>
+    </nav>
     <div id="content">
       {% block content %}{% endblock %}
     </div>
-    {% block menu %}{% endblock %}
   </body>
 </html>
