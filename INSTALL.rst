@@ -70,3 +70,10 @@ Set Up Apache
 
 A working vhost is in ``config/in_one_ear.conf``, but you'll need to replace my
 paths with yours.
+
+
+Create Users
+============
+
+Once you've made your first superuser either by following prompts or by
+twiddling the DB, you can use the standard admin UI at ``/admin`` for the rest.
