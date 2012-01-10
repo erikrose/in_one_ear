@@ -5,7 +5,16 @@ before to do it again fast.
 Make A Virtualenv
 =================
 
-2.7 and 2.6 work. 2.5 might as well.
+Make a virtualenv, then drop (or link) ``in_one_ear`` into ``site-packages``.
+(Sorry, no ``setup.py`` yet.) Python 2.7 and 2.6 work. 2.5 might as well.
+
+Use pip to install the dependencies listed in ``requirements.txt``::
+
+  pip install -r in_one_ear/requirements.txt
+
+You might get away with newer versions, but I've pinned ones I know to work. In
+particular, psycopg2<=2.4.1 is required. They overhauled some transaction stuff
+after that that breaks Django 1.3.x. Django 1.4 will put up with it.
 
 
 Set Up PostgreSQL
@@ -30,21 +39,6 @@ the latter with your DB credentials, ``STATIC_ROOT`` value, etc.
 The FS division between local and stock settings is something we use at Mozilla
 to avoid accidentally committing machine-specific things. It works pretty well,
 so I kept it.
-
-
-Install Dependencies
-====================
-
-Make a virtualenv, then drop (or link) ``in_one_ear`` into ``site-packages``.
-(Sorry, no ``setup.py`` yet.)
-
-Use pip to install the dependencies listed in ``requirements.txt``::
-
-  pip install -r in_one_ear/requirements.txt
-
-You might get away with newer versions, but I've pinned ones I know to work. In
-particular, psycopg2<=2.4.1 is required. They overhauled some transaction stuff
-after that that breaks Django 1.3.x. Django 1.4 will put up with it.
 
 
 Run syncdb
