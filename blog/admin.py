@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 
-from blog.models import Article, Comment
+from in_one_ear.blog.models import Article, Comment
 
 
 class ArticleAdmin(ModelAdmin):

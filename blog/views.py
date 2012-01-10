@@ -6,8 +6,8 @@ from django.template import RequestContext
 from django.views.decorators.http import (require_GET, require_POST,
                                           require_http_methods)
 
-from blog.forms import ArticleForm, CommentForm
-from blog.models import Article
+from in_one_ear.blog.forms import ArticleForm, CommentForm
+from in_one_ear.blog.models import Article
 
 
 @require_GET

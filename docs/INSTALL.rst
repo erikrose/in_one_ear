@@ -29,7 +29,9 @@ to avoid accidentally committing machine-specific things. It works pretty well.
 Install Dependencies
 ====================
 
-Use pip to install the dependencies listed in ``requirements.txt``.
+Use pip to install the dependencies listed in ``requirements.txt``::
+
+  pip install -r in_one_ear/requirements.txt
 
 
 Run The Tests

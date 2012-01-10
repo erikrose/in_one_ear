@@ -14,5 +14,5 @@ urlpatterns = patterns('',
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'registration/was_logged_out.html'}, name='in_one_ear.logout'),  # Can't seem to override default logged_out.html template.
 
     # The requirements say to park the articles at the root, so we do that:
-    url(r'', include('blog.urls'))
+    url(r'', include('in_one_ear.blog.urls'))
 )

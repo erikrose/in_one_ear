@@ -5,8 +5,8 @@ from django.test import TestCase
 
 from nose.tools import eq_
 
-from blog.models import Article
-from blog.tests import article, user
+from in_one_ear.blog.models import Article
+from in_one_ear.blog.tests import article, user
 
 
 class ViewTestCase(TestCase):

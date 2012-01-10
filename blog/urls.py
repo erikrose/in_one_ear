@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import patterns, include, url
 
 
-urlpatterns = patterns('blog.views',
+urlpatterns = patterns('in_one_ear.blog.views',
     url(r'^$', 'article_list', name='blog.article_list'),
     url(r'^(?P<slug>[^/]+)/$', 'article', name='blog.article'),
     url(r'^(?P<slug>[^/]+)/edit$', 'edit_article', name='blog.edit_article'),

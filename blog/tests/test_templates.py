@@ -3,7 +3,7 @@ from django.test import TestCase
 
 from nose.tools import eq_
 
-from blog.tests import article
+from in_one_ear.blog.tests import article
 
 
 class ArticlesTests(TestCase):

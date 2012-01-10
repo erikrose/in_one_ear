@@ -8,7 +8,7 @@ from string import letters
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
-from blog.models import Article
+from in_one_ear.blog.models import Article
 
 
 def with_save(func):

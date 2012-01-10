@@ -1,6 +1,6 @@
 from django.forms import ModelForm, TextInput
 
-from blog.models import Article, Comment
+from in_one_ear.blog.models import Article, Comment
 
 
 class ArticleForm(ModelForm):

@@ -1,4 +1,4 @@
-from blog.templatetags.rst2html import rst2html
+from in_one_ear.blog.templatetags.rst2html import rst2html
 
 
 def test_rst2html():
