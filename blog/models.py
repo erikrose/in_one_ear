@@ -1,8 +1,5 @@
-from datetime import datetime
-
 from django.contrib.auth.models import User
-from django.db.models import (Model, DateTimeField, TextField, DateField,
-                              ForeignKey)
+from django.db.models import Model, DateTimeField, TextField, ForeignKey
 from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _lazy
 

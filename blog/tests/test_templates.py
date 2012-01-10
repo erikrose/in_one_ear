@@ -1,8 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 
-from nose.tools import eq_
-
 from in_one_ear.blog.tests import article
 
 

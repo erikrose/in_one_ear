@@ -1,6 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
-import django.contrib.auth.urls
 
 
 admin.autodiscover()
