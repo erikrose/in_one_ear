@@ -20,7 +20,7 @@ Set Settings
 ============
 
 In the ``settings`` folder, copy ``local.py-dist`` to ``local.py``, and edit
-the latter with your DB credentials.
+the latter with your DB credentials, ``STATIC_ROOT`` value, etc.
 
 The FS division between local and stock settings is something we use at Mozilla
 to avoid accidentally committing machine-specific things. It works pretty well.
@@ -32,6 +32,12 @@ Install Dependencies
 Use pip to install the dependencies listed in ``requirements.txt``::
 
   pip install -r in_one_ear/requirements.txt
+
+
+Collect Static Assets
+=====================
+
+./manage.py collectstatic
 
 
 Run The Tests

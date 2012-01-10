@@ -18,3 +18,5 @@ DATABASES = {
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'e5cj9%u!lj_9)q&&0et-mloe2j!erts$m7g7gcc%-uh!mtd-&9'
+
+STATIC_ROOT = '/path/to/in_one_ear/static'
