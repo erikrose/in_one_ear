@@ -34,6 +34,10 @@ Known Issues
 Future
 ======
 
+* The front page would likely be the most commonly hit page, but it does a lot
+  of computation at the moment. All that excerpting of article bodies means a lot
+  of parsing. We should cache either the individual excerpts or maybe even entire
+  rendered pages. If the latter, maybe that should happen in some reverse proxy.
 * Comment editing (maybe not anonymous ones)
 * Flip over to HTTPS when logging in, and stay there until logged out.
 * Minify static assets.

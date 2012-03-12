@@ -65,7 +65,8 @@ menu {
 	background-color: #eee;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	border-radius: 5px;	   display: block;
+	border-radius: 5px;
+	display: block;
 	float: right;
 	padding: 1em;
 }
@@ -110,9 +111,6 @@ article.main header {
 }
 
 .comments article {
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
 	color: #333;
 	line-height: 120%;
 	padding: 1em 1.5em;
@@ -126,6 +124,9 @@ article.main header {
 
 .comments article:nth-child(odd) {
 	background-color: #f4f4f4;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
 }
 
 form.comment textarea {
