@@ -1,11 +1,12 @@
 from django.core.urlresolvers import reverse
-from django.test import TestCase
 
-from in_one_ear.blog.tests import article
+from in_one_ear.blog.tests import article, TestCase
 
 
 class ArticlesTests(TestCase):
     """Tests for the article list"""
+
+    fixtures = ['articles.json', 'comments.json']
 
     def test_articles_show_up(self):
         """Assert (multiple) articles show up on the front page."""

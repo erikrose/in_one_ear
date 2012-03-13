@@ -1,13 +1,12 @@
-from django.test import TestCase
-
 from nose.tools import eq_
 
 from in_one_ear.blog.models import Article
-from in_one_ear.blog.tests import article
+from in_one_ear.blog.tests import article, TestCase
 
 
 class ArticleTests(TestCase):
     """Tests for the Article model"""
+    fixtures = ['articles.json', 'comments.json']
 
     def test_unicode(self):
         """Make sure the ``__unicode__`` method returns the title."""

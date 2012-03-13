@@ -1,12 +1,12 @@
 """Tests for views that are independent of what template they render"""
 
 from django.core.urlresolvers import reverse
-from django.test import TestCase
 
 from nose.tools import eq_
 
 from in_one_ear.blog.models import Article
 from in_one_ear.blog.tests import article, user
+from in_one_ear.blog.tests import TestCase
 
 
 class ViewTestCase(TestCase):
@@ -19,6 +19,8 @@ class ViewTestCase(TestCase):
 
 class EditArticleTests(ViewTestCase):
     """Tests for the edit_article view"""
+
+    fixtures = ['articles.json']
 
     @staticmethod
     def _edit_view(slug):
@@ -80,6 +82,8 @@ class DeleteArticleTests(ViewTestCase):
 
 class NewArticleTests(ViewTestCase):
     """Tests for making new articles"""
+
+    fixtures = ['articles.json']
 
     def test_happy_path(self):
         """Assert new articles get made if everybody does everything right."""

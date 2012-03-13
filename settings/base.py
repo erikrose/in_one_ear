@@ -145,6 +145,7 @@ LOGGING = {
     }
 }
 
+#TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner'
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 # On login without a "next" destination, go home:

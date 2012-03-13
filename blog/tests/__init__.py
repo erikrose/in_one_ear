@@ -8,6 +8,8 @@ from string import letters
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
+from django_nose import FastFixtureTestCase as TestCase
+
 from in_one_ear.blog.models import Article
 
 

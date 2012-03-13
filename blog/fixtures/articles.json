@@ -1,0 +1,12 @@
+[
+  {
+    "fields": {
+      "body": "I like liver.",
+      "created": "2012-03-13 13:27:36",
+      "slug": "i-like-chicken",
+      "title": "I like chicken"
+    },
+    "model": "blog.article",
+    "pk": 1
+  }
+]

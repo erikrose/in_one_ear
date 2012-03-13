@@ -1,0 +1,20 @@
+[
+  {
+    "fields": {
+      "article": 1,
+      "body": "Booyah!",
+      "creator": 1
+    }, 
+    "model": "blog.comment", 
+    "pk": 1
+  }, 
+  {
+    "fields": {
+      "article": 1, 
+      "body": "Mister Bigglesworth", 
+      "creator": 1
+    }, 
+    "model": "blog.comment", 
+    "pk": 2
+  }
+]
