@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.db.models import Model, DateTimeField, TextField, ForeignKey
+from django.db.models import Model, DateTimeField, CharField, TextField, ForeignKey
 from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _lazy
 
@@ -13,10 +13,10 @@ class Article(Model):
     # specifying limits only decreases performance. it has no effect on how
     # it's stored. Not giving a max length here saves a pricy migration,
     # inevitably, we want to increase it.
-    title = TextField(db_index=True, unique=True)  # Index for admin search.
-    slug = TextField(db_index=True, unique=True)
+    title = CharField(max_length=100, db_index=True, unique=True)  # Index for admin search.
+    slug = CharField(max_length=100, db_index=True, unique=True)
     created = DateTimeField(auto_now_add=True, db_index=True)  # Index for sort
-    body = TextField(blank=True,  # Can be blank. Why be obnoxious?
+    body = TextField(max_length=100000, blank=True,  # Can be blank. Why be obnoxious?
                      help_text=REST_INSTRUCTIONS)
 
     def __unicode__(self):
